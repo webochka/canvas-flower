@@ -1,0 +1,1 @@
+{"version":3,"sources":["app.sass"],"names":[],"mappings":"AAAA,KACC,kBAAkB,AAClB,eAAiB,CAAG","file":"app.css","sourcesContent":["body {\n\ttext-align: center;\n\tbackground: black; }\n\n"]}
