@@ -1,55 +1,48 @@
 
 var canvas = document.getElementById('canvas');
 var options = document.getElementById('options');
-var {option1,option2, option3, option4} = options;
+var {option1, option2, option3, option4} = options;
 
 var ctx = canvas.getContext('2d');
 
 var t = 0;
-var radius = 100;
 var xCenter = 250;
 var yCenter = 250;
 var n = 400;
 
-function path(t) {
+var strokeStyle1= '#00ff7f';
+var strokeStyle2 = '#FF1493';
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+function figure(val1, val2, radius, strokeStyle,t) {
 
   ctx.beginPath();
 
   for (var i = 0; i<n; i++) {
-    var x = xCenter + (radius + option3.value*Math.sin(t/500 + 26*i*Math.PI/n))*Math.sin(i*option1.value*Math.PI/n);
-    var y = yCenter + (radius + option3.value*Math.sin(t/500 + 26*i*Math.PI/n))*Math.cos(i*option1.value*Math.PI/n);
+    var x = xCenter + (radius + val1*Math.sin(t/500 + 26*i*Math.PI/n))*Math.sin(i*val2*Math.PI/n);
+    var y = yCenter + (radius + val1*Math.sin(t/500 + 26*i*Math.PI/n))*Math.cos(i*val2*Math.PI/n);
     
     ctx.lineTo(x,y); 
+    
   }
 
   ctx.closePath(); 
   ctx.lineWidth = 2;
-  ctx.strokeStyle= '#00ff7f';
+  ctx.strokeStyle= strokeStyle;
   ctx.stroke();
-
-  
-  ctx.beginPath();
-
-  for (var i = 0; i<n; i++) {
-    var x = xCenter + (radius/2 + option4.value*Math.sin(t/500 + 26*i*Math.PI/n))*Math.sin(i*option2.value*Math.PI/n);
-    var y = yCenter + (radius/2 + option4.value*Math.sin(t/500 + 26*i*Math.PI/n))*Math.cos(i*option2.value*Math.PI/n); 
-
-    ctx.lineTo(x,y);
-
-  }
-
-  ctx.closePath(); 
-  ctx.strokeStyle= '#FF1493';
-  ctx.stroke();
-
-  window.requestAnimationFrame(path);
 
 }
 
-path(t);
+function draw(t) {
 
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+  figure(option3.value, option1.value, 100, strokeStyle1,t);
+  figure(option4.value, option2.value, 50, strokeStyle2,t);
+
+  window.requestAnimationFrame(draw);
+
+}
+
+draw(t);
 
 
